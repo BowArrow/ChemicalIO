@@ -1,0 +1,82 @@
+{
+    "tableNumber": 6,
+    "numrows": 17,
+    "numcols": 4,
+    "data": [
+      [
+        "Examples only",
+        "CAS Number"
+      ],
+      [
+        "Cadmium",
+        "7440-43-9"
+      ],
+      [
+        "Cadmium chloride",
+        "10108-64-2"
+      ],
+      [
+        "Cadmium fluoroborate",
+        "14486-19-2"
+      ],
+      [
+        "Cadmium oxide",
+        "1306-19-0"
+      ],
+      [
+        "Cadmium iodide",
+        "7790-80-9"
+      ],
+      [
+        "Cadmium selenide",
+        "1306-24-7"
+      ],
+      [
+        "Cadmium telluride",
+        "1306-25-8"
+      ],
+      [
+        "Cadmium tungstate",
+        "7790-85-4"
+      ],
+      [
+        "Cadmium nitrate (Cadmium salt)",
+        "10325-94-7"
+      ],
+      [
+        "Cadmium sulfate (Sulfuric acid)",
+        "10124-36-4"
+      ],
+      [
+        "Cadmium sulfide",
+        "1306-23-6"
+      ],
+      [
+        "Other cadmium compounds",
+        "various"
+      ],
+      [
+        "A4 - Chromium (VI) and Chromium (VI) compounds",
+        "various",
+        "Restricted applications:",
+        "Intentionally added,  or "
+      ],
+      [
+        null,
+        null,
+        "1. Pigment, dyes used in ",
+        "1000 ppm  (homogeneous "
+      ],
+      [
+        null,
+        null,
+        "plastics and rubber",
+        "material basis)"
+      ],
+      [
+        null,
+        null,
+        "2. Dyes, inks, catalyst"
+      ]
+    ]
+  }

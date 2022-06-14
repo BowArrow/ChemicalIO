@@ -51,6 +51,7 @@
 }
 
 .drop-down {
+    overflow: hidden;
     background-color: #397da2;
     text-decoration: none;
     color: white;

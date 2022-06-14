@@ -25,9 +25,10 @@ class Nav extends Component {
                 </MDBRow>
                 <MDBRow className={`drop-down ${this.state.isOpen ? 'open' : 'closed'}`}>
                     <Link className='link-box col-md-12' to='/'>Home</Link>
-                    <Link className='link-box col-md-12' to='/'>Chemical List</Link>
+                    <Link className='link-box col-md-12' to='/chemlist'>Chemical List</Link>
                     <Link className='link-box col-md-12' to='/'>Report</Link>
                     <Link className='link-box col-md-12' to='/'>Log</Link>
+                    
                 </MDBRow>
             </>
         )

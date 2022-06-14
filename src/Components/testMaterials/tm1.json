@@ -1,0 +1,69 @@
+{
+    "tableNumber": 4,
+    "numrows": 13,
+    "numcols": 4,
+    "data": [
+      [
+        "List of substances",
+        "CAS Number"
+      ],
+      [
+        "Asbestos and Asbestos Materials",
+        "1332-21-4"
+      ],
+      [
+        "Actinolite",
+        "77536-66-4"
+      ],
+      [
+        "Amosite (Grunerite)",
+        "12172-73-5"
+      ],
+      [
+        "Antophyllite",
+        "77536-67-5"
+      ],
+      [
+        "Chrysotile",
+        "12001-29-5"
+      ],
+      [
+        "Crocidolite",
+        "12001-28-4"
+      ],
+      [
+        "Tremolite",
+        "77536-68-6"
+      ],
+      [
+        "A2 - Certain Azo-based Materials",
+        "various",
+        "Restricted applications:",
+        "EU - REACH Regulation and amendments;"
+      ],
+      [
+        "(applies only to azocolourants and azodyes which, by reductive cleavage ",
+        null,
+        "applicable only to Items that ",
+        "Germany - Consumer Good Ordinance, ChemG"
+      ],
+      [
+        "of one or more azo groups, may release one or more of the 22 ",
+        null,
+        "may come into direct contact ",
+        "Japan - Law Concerning Examination and Regulation of "
+      ],
+      [
+        "aromatics amines listed below)",
+        null,
+        "with human skin",
+        "Manufacture and Handling of Chemical Substances, Labor "
+      ],
+      [
+        null,
+        null,
+        null,
+        "Safety and Hygiene Law."
+      ]
+    ]
+  }

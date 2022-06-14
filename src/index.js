@@ -6,9 +6,10 @@ import reportWebVitals from './reportWebVitals';
 import firebase from 'firebase/compat/app';
 import 'mdb-react-ui-kit/dist/css/mdb.min.css'
 
-firebase.initializeApp({
+export const firebaseApp = firebase.initializeApp({
   apiKey: "AIzaSyDMVxVgJrIVsFYGWEJW1wl2lP6GrJnxsfE",
   authDomain: "chemicalio.firebaseapp.com",
+  databaseURL: "https://chemicalio-default-rtdb.firebaseio.com",
   projectId: "chemicalio",
   storageBucket: "chemicalio.appspot.com",
   messagingSenderId: "382520582201",
