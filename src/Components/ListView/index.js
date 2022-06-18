@@ -4,7 +4,7 @@ import './style.css';
 import tm1 from '../testMaterials/tm1';
 import tm2 from '../testMaterials/tm2';
 import tm3 from '../testMaterials/tm3';
-import { getDatabase, ref, set, onValue } from 'firebase/database';
+import { getDatabase, ref, set, onValue, push } from 'firebase/database';
 import { firebaseApp } from "../..";
 
 
@@ -73,45 +73,57 @@ class ListView extends Component {
                 this.setState({ currentData: data })
             })
         } else if (inputState !== '') {
+            this.setState({ loaded: 0 })
             onValue(chemRefAll, (snap) => {
                 const data = snap.val();
-                let result = Object.keys(data)
-                    .filter((key) => key.toLocaleLowerCase().includes(inputState))
-                    .reduce((cur, key) => {return Object.assign(cur, { [key]: data[key] })}, {});
+                let result = [];
+                if (isNaN(inputState)) {
+                    result = Object.keys(data)
+                        .filter((key) => key.toLocaleLowerCase().includes(inputState))
+                        .reduce((cur, key) => { return Object.assign(cur, { [key]: data[key] }) }, {});
+                } else {
+                    result = Object.values(data)
+                        .filter((key) => key.cas.replace(/[- ,]/g, "").includes(inputState))
+                        .reduce((cur, key) => { return Object.assign(cur, { [key.name]: data[key.name] }) }, {});
+                }
                 this.setState({ currentData: result });
             })
         }
     }
 
-    
     finalRenderList = () => {
         const listChems = () => {
             const { currentData } = this.state;
             let item = [];
             for (const prop in currentData) {
-                item.push(<li key={currentData[prop].cas.replace("-", "")}><a className="list-link">{currentData[prop].name} : CAS#{currentData[prop].cas}</a></li>)
-            }   
+                item.push(<li key={currentData[prop].cas.replace("-", "")}><MDBContainer fluid><MDBRow className="list-link">
+                    <MDBCol>
+                        {currentData[prop].name}
+                    </MDBCol>
+                    <MDBCol>
+                        {currentData[prop].cas}
+                    </MDBCol>
+                </MDBRow></MDBContainer></li>)
+            }
             return item;
         }
 
-        return <ul>
-            {listChems()}
-        </ul>
+        return listChems()
     }
 
     push = () => {
-        const { chemicals } = this.state;       
+        const { chemicals } = this.state;
         chemicals.map(chem => {
             const name = chem[0]
             const db = getDatabase(firebaseApp)
-             set(ref(db, `chemicals/${name}`), {                
-                    name: chem[0],
-                    cas: chem[1]
-                }
+            set(ref(db, `chemicals/${name}`), {
+                name: chem[0],
+                cas: chem[1]
+            }
             )
         }).catch(alert);
     }
-    
+
     updateInputState = (value) => {
         this.setState({
             inputState: value,
@@ -138,20 +150,34 @@ class ListView extends Component {
         const { inputActive } = this.state;
         if (inputActive) {
             this.renderDBChemicals();
-            this.setState({ inputActive: false})
+            this.setState({ inputActive: false })
         }
     }
 
     render() {
         return (
             <>
-            <MDBContainer>
-                <MDBRow>
-                    <input onChange={(e) => this.updateInputState(e.target.value)} placeholder='Search' />
-                    <h3 className="text-center mt-4">Chemicals</h3>
-                    <ul>{this.finalRenderList()}</ul>
-                </MDBRow>
-            </MDBContainer>
+                <MDBContainer>
+                    <MDBRow>
+                        <input onChange={(e) => this.updateInputState(e.target.value)} placeholder='Search' />
+                        <h3 className="text-center mt-4">Chemicals</h3>
+                        <ul>
+                            <li>
+                                <MDBContainer fluid>
+                                    <MDBRow className="list-head">
+                                        <MDBCol>
+                                            <h5>Chemical</h5>
+                                        </MDBCol>
+                                        <MDBCol>
+                                            <h5>CAS</h5>
+                                        </MDBCol>
+                                    </MDBRow>
+                                </MDBContainer>
+                            </li>
+                            {this.finalRenderList()}
+                        </ul>
+                    </MDBRow>
+                </MDBContainer>
             </>
         )
     }

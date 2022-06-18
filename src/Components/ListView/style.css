@@ -4,7 +4,8 @@ ul {
 }
 
 .list-link {
-    padding: 10px 10px;
+    padding: 10px 0;
+    margin: 0 !important;
     line-height: 40px;
     width: 100% !important;
     max-height: 100%;
@@ -12,6 +13,19 @@ ul {
     vertical-align: middle;
     transition: 500ms;
     color: #254f66;
+}
+
+.list-head {
+    padding: 10px 0;
+    margin: 0 !important;
+    line-height: 40px;
+    width: 100% !important;
+    max-height: 100%;
+    text-align: center;
+    vertical-align: middle;
+    transition: 500ms;
+    color: #254f66;
+    text-decoration: underline;
 }
 
 .list-link:hover {
