@@ -34,9 +34,6 @@ class App extends Component {
         <FrontPage />
         <MDBRow>
           <p className='App-intro'>{this.state.data}</p>
-          <code>
-            <pre>{JSON.stringify(firebaseApp.options, null, 2)}</pre>
-          </code>
         </MDBRow>
       </MDBContainer>
     );
