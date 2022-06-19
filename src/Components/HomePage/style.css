@@ -38,10 +38,10 @@
     transition: 250ms;
 }
 
-.qrcodemain .qrclosed {
+.qrclosed {
     height: 0px;
 }
 
-.qrcodemain .qropen {
-    height: 0px;
+.qropen {
+    height: 400px;
 }

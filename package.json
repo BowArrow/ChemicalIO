@@ -37,7 +37,7 @@
     "client": "npm start",
     "clientinstall": "npm install --prefix client",
     "server": "cd express_backend && node server.js",
-    "dev": "concurrently \"npm run server\" \"npm run client\"",
+    "dev": "react-scripts start",
     "start": "node express_backend/server.js",
     "build": "react-scripts build",
     "test": "react-scripts test",
