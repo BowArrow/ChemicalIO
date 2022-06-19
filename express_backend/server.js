@@ -7,12 +7,12 @@ const port = process.env.PORT || 5000;
 
 app.use(cors())
 
-const publicPath = path.join(__dirname, '..', 'public')
+const publicPath = path.join(__dirname, '..', 'build')
 
 app.use(express.static(publicPath));
 
 app.get('*', (req, res) => {
-    res.sendFile(path.join(publicPath, 'build/index.html'));
+    res.sendFile(path.join(publicPath, 'index.html'));
  });
 
 const storage = multer.diskStorage({
