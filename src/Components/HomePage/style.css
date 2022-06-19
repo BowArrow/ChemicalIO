@@ -33,3 +33,15 @@
     transform: translateY(2px); 
 }
 
+.qrcodemain {
+    overflow: hidden;
+    transition: 250ms;
+}
+
+.qrcodemain .qrclosed {
+    height: 0px;
+}
+
+.qrcodemain .qropen {
+    height: 0px;
+}

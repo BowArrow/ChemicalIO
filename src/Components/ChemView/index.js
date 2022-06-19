@@ -122,10 +122,10 @@ class ChemView extends Component {
             <MDBContainer className='px-5 mt-3'>
                 <MDBRow>
                     <MDBCol />
-                    <MDBCol className='text-center align-middle mb-4' md='3'>
+                    <MDBCol className='text-center align-middle mb-4' md='4'>
                         <QRCodeSVG className='img-thumbnail my-auto mx-auto' value={window.location.href} height={250} width={250} />
                     </MDBCol>
-                    <MDBCol md='3'>
+                    <MDBCol md='4'>
                         {this.renderInfo()}
                     </MDBCol>
                     <MDBCol />

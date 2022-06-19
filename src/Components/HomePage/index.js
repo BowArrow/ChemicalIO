@@ -1,8 +1,19 @@
 import React, { Component } from 'react';
 import { MDBContainer, MDBCol, MDBRow, MDBBtn } from 'mdbreact';
+import { QRCodeSVG } from 'qrcode.react';
 import "./style.css";
 
 class HomePage extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            toggle: false
+        }
+    }
+
+    getStarted = () => {
+        this.setState({ toggle: !this.state.toggle })
+    }
 
     render() {
         return (
@@ -21,8 +32,11 @@ class HomePage extends Component {
                             </div>
                         </header>
                     </MDBCol>
+                    <MDBCol md='12' className={`qrcodemain py-5 text-center ${this.state.toggle ? 'qropen' : 'qrclosed'}`}>
+                        <QRCodeSVG className="img-thumbnail mx-auto" value={window.location.href} color="#397da2" height={250} width={250} />
+                    </MDBCol>
                     <MDBCol md='12' className='text-center mt-4 mb-5'>
-                        <button className='get-started'>Get Started</button>
+                        <button className='get-started' onClick={this.getStarted}>Get Started</button>
                     </MDBCol>
                 </MDBRow>
             </MDBContainer>

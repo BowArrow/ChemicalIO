@@ -32,9 +32,6 @@ class App extends Component {
     return (
       <MDBContainer fluid>
         <FrontPage />
-        <MDBRow>
-          <p className='App-intro'>{this.state.data}</p>
-        </MDBRow>
       </MDBContainer>
     );
   }
