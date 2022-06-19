@@ -6,6 +6,8 @@ import tm2 from '../testMaterials/tm2';
 import tm3 from '../testMaterials/tm3';
 import { getDatabase, ref, set, onValue, push } from 'firebase/database';
 import { firebaseApp } from "../..";
+import { Link } from 'react-router-dom';
+import ChemView from "../ChemView";
 
 
 class ListView extends Component {
@@ -63,7 +65,6 @@ class ListView extends Component {
     renderDBChemicals = () => {
         const { inputState, loaded } = this.state;
         const db = getDatabase(firebaseApp);
-        const chemicalRef = ref(db, '/chemicals/' + inputState);
         const chemRefAll = ref(db, '/chemicals');
         if (inputState == '' && loaded == 0) {
             this.setState({ loaded: 1 })
@@ -76,16 +77,12 @@ class ListView extends Component {
             this.setState({ loaded: 0 })
             onValue(chemRefAll, (snap) => {
                 const data = snap.val();
-                let result = [];
-                if (isNaN(inputState)) {
-                    result = Object.keys(data)
-                        .filter((key) => key.toLocaleLowerCase().includes(inputState))
-                        .reduce((cur, key) => { return Object.assign(cur, { [key]: data[key] }) }, {});
-                } else {
-                    result = Object.values(data)
-                        .filter((key) => key.cas.replace(/[- ,]/g, "").includes(inputState))
-                        .reduce((cur, key) => { return Object.assign(cur, { [key.name]: data[key.name] }) }, {});
-                }
+                let result = Object.values(data)
+                    .filter((key) => {
+                        let str = key.cas + key.name
+                        return str.toLocaleLowerCase().includes(inputState)
+                    })
+                    .reduce((cur, key) => { return Object.assign(cur, { [key.key]: data[key.key] }) }, {});
                 this.setState({ currentData: result });
             })
         }
@@ -96,14 +93,14 @@ class ListView extends Component {
             const { currentData } = this.state;
             let item = [];
             for (const prop in currentData) {
-                item.push(<li key={currentData[prop].cas.replace("-", "")}><MDBContainer fluid><MDBRow className="list-link">
+                item.push(<li key={currentData[prop].cas.replace("-", "")}><Link to={`/chemlist/${currentData[prop].key}`}><MDBContainer fluid><MDBRow className="list-link">
                     <MDBCol>
                         {currentData[prop].name}
                     </MDBCol>
                     <MDBCol>
                         {currentData[prop].cas}
                     </MDBCol>
-                </MDBRow></MDBContainer></li>)
+                </MDBRow></MDBContainer></Link></li>)
             }
             return item;
         }
@@ -111,12 +108,16 @@ class ListView extends Component {
         return listChems()
     }
 
-    push = () => {
+    pushDB = () => {
         const { chemicals } = this.state;
         chemicals.map(chem => {
             const name = chem[0]
             const db = getDatabase(firebaseApp)
-            set(ref(db, `chemicals/${name}`), {
+            let thisRef = ref(db, 'chemicals');
+            let uniqueKey = push(thisRef);
+            let thisKey = uniqueKey.key;
+            set(uniqueKey, {
+                key: thisKey,
                 name: chem[0],
                 cas: chem[1]
             }
@@ -159,6 +160,7 @@ class ListView extends Component {
             <>
                 <MDBContainer>
                     <MDBRow>
+                        {/* <button onClick={this.pushDB}>push</button> */}
                         <input onChange={(e) => this.updateInputState(e.target.value)} placeholder='Search' />
                         <h3 className="text-center mt-4">Chemicals</h3>
                         <ul>

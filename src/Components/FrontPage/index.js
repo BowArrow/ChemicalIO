@@ -5,6 +5,7 @@ import HomePage from '../HomePage';
 import ListView from '../ListView';
 import PDFPage from '../PDFPage';
 import Nav from '../Nav';
+import { ChemViewWrapper } from '../ChemViewWrapper';
 
 class FrontPage extends Component {
     state = {
@@ -19,6 +20,7 @@ class FrontPage extends Component {
                     <Routes>
                         <Route path='/' element={<HomePage />} />
                         <Route path='/chemlist' element={<ListView />} />
+                        <Route path='/chemlist/:key' element={<ChemViewWrapper />} />
                     </Routes>
                 </MDBRow>
             </Router>

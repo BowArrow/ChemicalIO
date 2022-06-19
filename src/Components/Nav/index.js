@@ -28,7 +28,6 @@ class Nav extends Component {
                     <Link className='link-box col-md-12' to='/chemlist'>Chemical List</Link>
                     <Link className='link-box col-md-12' to='/'>Report</Link>
                     <Link className='link-box col-md-12' to='/'>Log</Link>
-                    
                 </MDBRow>
             </>
         )
