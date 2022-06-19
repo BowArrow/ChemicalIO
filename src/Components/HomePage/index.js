@@ -32,8 +32,8 @@ class HomePage extends Component {
                             </div>
                         </header>
                     </MDBCol>
-                    <MDBCol md='12' className={`qrcodemain py-5 text-center ${this.state.toggle ? 'qropen' : 'qrclosed'}`}>
-                        <QRCodeSVG className="img-thumbnail mx-auto" value={window.location.href} color="#397da2" height={250} width={250} />
+                    <MDBCol md='12' className={`qrcodemain my-5 text-center ${this.state.toggle ? 'qropen' : 'qrclosed'}`}>
+                        <QRCodeSVG className="img-thumbnail mx-auto" value={window.location.href} fgColor="#397da2" height={250} width={250} />
                     </MDBCol>
                     <MDBCol md='12' className='text-center mt-4 mb-5'>
                         <button className='get-started' onClick={this.getStarted}>Get Started</button>
