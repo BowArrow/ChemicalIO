@@ -1,10 +1,19 @@
 const express = require('express');
 const app = express();
+const path = require('path');
 const multer = require('multer');
 const cors = require('cors');
 const port = process.env.PORT || 5000;
 
 app.use(cors())
+
+const publicPath = path.join(__dirname, '..', 'public')
+
+app.use(express.static(publicPath));
+
+app.get('*', (req, res) => {
+    res.sendFile(path.join(publicPath, 'index.html'));
+ });
 
 const storage = multer.diskStorage({
     destination: function (req, file, cb) {

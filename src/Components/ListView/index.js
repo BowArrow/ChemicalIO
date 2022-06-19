@@ -7,6 +7,7 @@ import tm3 from '../testMaterials/tm3';
 import { getDatabase, ref, set, onValue, push } from 'firebase/database';
 import { firebaseApp } from "../..";
 import { Link } from 'react-router-dom';
+import { BsFillCircleFill } from 'react-icons/bs';
 import ChemView from "../ChemView";
 
 
@@ -22,45 +23,6 @@ class ListView extends Component {
             currentData: null
         }
     }
-
-    // filter = (e) => {
-    //     const keyword = e.target.value
-    //     const {chemicals} = this.state;
-    //     if ( keyword !== '') {
-    //         const results = chemicals.filter((chemical) => {
-    //             return chemicals.name[0].toLowerCase().startsWith(keyword.toLowerCase());
-    //         });
-    //         this.setState({ foundChecmicals : results })
-    //     } else {
-    //         this.setState({foundChecmicals: []})
-    //     }
-    // }
-
-    // renderJSONLists = () => {
-    //     const tm1arr = tm1.data.slice(0, -5);
-    //     const tm2arr = tm2.data.slice(0, -9);
-    //     const tm3arr = tm3.data.slice(0, -5);
-
-    //     const liRender = (arr) => {
-    //         return arr.map((name, index) => {
-    //             return <li key={index}>{index == 0 ? (<h4 className="title">{name[0]}</h4>) : (<a className="list-link">{name[0]} : CAS#{name[1]}</a>)}</li>
-    //         })
-    //     }
-
-    //     let ourDiv = <div>
-    //         <ul className="mt-4">
-    //             {liRender(tm1arr)}
-    //         </ul>
-    //         <ul className="mt-4">
-    //             {liRender(tm2arr)}
-    //         </ul>
-    //         <ul className="mt-4">
-    //             {liRender(tm3arr)}
-    //         </ul>
-    //     </div>
-
-    //     return ourDiv;
-    // }
 
     renderDBChemicals = () => {
         const { inputState, loaded } = this.state;
@@ -88,17 +50,28 @@ class ListView extends Component {
         }
     }
 
+    renderLight = (currentData, prop) => {
+        if(currentData[prop].data) {
+            return (currentData[prop].data.lastLog.amount / currentData[prop].data.maxVolume.amount) > .3 ? <BsFillCircleFill color="#00a300" /> : <BsFillCircleFill color="#ff0000" />; 
+        } else {
+            return <BsFillCircleFill color="#808080" />
+        }
+    }
+
     finalRenderList = () => {
         const listChems = () => {
             const { currentData } = this.state;
             let item = [];
             for (const prop in currentData) {
                 item.push(<li key={currentData[prop].cas.replace("-", "")}><Link to={`/chemlist/${currentData[prop].key}`}><MDBContainer fluid><MDBRow className="list-link">
-                    <MDBCol>
+                    <MDBCol className="text-truncate">
                         {currentData[prop].name}
                     </MDBCol>
                     <MDBCol>
                         {currentData[prop].cas}
+                    </MDBCol>
+                    <MDBCol className="text-center">
+                        {this.renderLight(currentData, prop)}
                     </MDBCol>
                 </MDBRow></MDBContainer></Link></li>)
             }
@@ -172,6 +145,9 @@ class ListView extends Component {
                                         </MDBCol>
                                         <MDBCol>
                                             <h5>CAS</h5>
+                                        </MDBCol>
+                                        <MDBCol>
+                                            <h5>Status</h5>
                                         </MDBCol>
                                     </MDBRow>
                                 </MDBContainer>

@@ -20,6 +20,7 @@
     "pdfjs": "^2.4.7",
     "pdfjs-dist": "^2.14.305",
     "qrcode": "^1.5.0",
+    "qrcode.react": "^3.0.2",
     "react": ">=16.8.0",
     "react-dom": ">=16.8.0",
     "react-dropzone": "^14.2.1",
@@ -35,14 +36,14 @@
   "scripts": {
     "client": "npm start",
     "clientinstall": "npm install --prefix client",
-    "server": "nodemon express_backend/server",
+    "server": "cd express_backend && node server.js",
     "dev": "concurrently \"npm run server\" \"npm run client\"",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
-  "proxy": "http://localhost:5000",
+  "proxy": "http://localhost:5000/",
   "eslintConfig": {
     "extends": [
       "react-app",
